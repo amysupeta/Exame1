@@ -21,8 +21,34 @@ class EventsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Event->recursive = 0;
+		$this->Event->recursive = 2;
 		$this->set('events', $this->Paginator->paginate());
+                
+                 $activ=$this->Event->find('',array(
+                  'conditions'=>array(
+                      'Event.status_id'=>'1'
+                      )
+                ));
+                 
+                  $cancel=$this->Event->find('all',array(
+                  'conditions'=>array(
+                      'Event.status_id'=>'2'
+                      )
+                ));
+                  
+                   $palest=$this->Event->find('all',array(
+                  'conditions'=>array(
+                      'Event.tipo'=>'palestra'
+                      )
+                ));
+                   
+                    $work=$this->Event->find('all',array(
+                  'conditions'=>array(
+                      'Event.tipo'=>'workshop'
+                      )
+                ));
+                    
+                        $this->set(compact('activ','cancel','palest', 'work'));
 	}
 
 /**
@@ -55,9 +81,17 @@ class EventsController extends AppController {
 				$this->Session->setFlash(__('The event could not be saved. Please, try again.'));
 			}
 		}
-		$natures = $this->Event->Nature->find('list');
-		$statuses = $this->Event->Status->find('list');
-		$this->set(compact('natures', 'statuses'));
+		$natures = $this->Event->Nature->find('list', array(
+                    'fields'=>array(
+                        'Nature.designacao'
+                    )
+                ));
+                $statuses = $this->Event->Status->find('list',array(
+                    'fields'=>array(
+                        'Status.nome'
+                    )
+                ));
+		$this->set(compact('natures','statuses'));
 	}
 
 /**
@@ -83,8 +117,7 @@ class EventsController extends AppController {
 			$this->request->data = $this->Event->find('first', $options);
 		}
 		$natures = $this->Event->Nature->find('list');
-		$statuses = $this->Event->Status->find('list');
-		$this->set(compact('natures', 'statuses'));
+		$this->set(compact('natures'));
 	}
 
 /**

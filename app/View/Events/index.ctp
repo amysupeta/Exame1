@@ -1,15 +1,17 @@
 <div class="events index">
 	<h2><?php echo __('Events'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table class="table table-bordered">
 	<thead>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('titulo'); ?></th>
-			<th><?php echo $this->Paginator->sort('descricao'); ?></th>
-			<th><?php echo $this->Paginator->sort('local'); ?></th>
-			<th><?php echo $this->Paginator->sort('agenda'); ?></th>
-			<th><?php echo $this->Paginator->sort('tipo'); ?></th>
-			<th><?php echo $this->Paginator->sort('nature_id'); ?></th>
+			
+			
+			<th>Id</th>
+			<th>Titulo</th>
+                        <th>Descricao</th>
+                        <th>Local</th>
+                        <th>Agenda</th>
+                        <th><?php echo $this->Paginator->sort('tipo'); ?></th>
+                        <th>Nature_id</th>
 			<th><?php echo $this->Paginator->sort('inscricao'); ?></th>
 			<th><?php echo $this->Paginator->sort('status_id'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -41,18 +43,8 @@
 	</tbody>
 	</table>
 	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-		'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
+	
+            
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
